@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Морфология PRO 4.0</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --bg-soft: #eef4ff;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --blue: #2f6fed;
+      --violet: #7c4dff;
+      --green: #169c57;
+      --red: #cf3f3f;
+      --yellow: #f59e0b;
+      --line: #d8e3ff;
+      --shadow: 0 12px 28px rgba(0,0,0,.08);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef3ff 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1200px, 94%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      color: white;
+      padding: 24px 0 42px;
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      background: rgba(255,255,255,.14);
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: .2s ease;
+      font-size: .95rem;
+    }
+
+    nav a:hover { background: rgba(255,255,255,.22); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      margin: 0 0 14px;
+    }
+
+    .hero p { margin: 0; opacity: .95; font-size: 1.02rem; }
+
+    .hero-card {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 24px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .hero-mini {
+      background: rgba(255,255,255,.15);
+      border-radius: 16px;
+      padding: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    main { padding: 30px 0 70px; }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .metric {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric .label { color: var(--muted); font-size: .9rem; }
+    .metric .value { font-size: 1.7rem; font-weight: 800; color: var(--blue); }
+
+    .section {
+      margin: 34px 0;
+      scroll-margin-top: 24px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.9rem;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #e9f0ff;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: .92rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .card h3 { margin-top: 0; }
+
+    .theory-block {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fafcff;
+      border: 1px solid var(--line);
+    }
+
+    .theory-block h4 {
+      margin: 0 0 8px;
+      color: var(--blue);
+    }
+
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    li { margin-bottom: 8px; }
+
+    .infographic {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      border: 1px dashed #bfd2ff;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .info-item {
+      background: white;
+      border: 1px solid #d8e4ff;
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      min-height: 124px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .emoji { font-size: 1.8rem; margin-bottom: 8px; }
+
+    .mini-table {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1.3fr;
+      gap: 10px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .trainer-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .task {
+      background: #f8fbff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .task p { margin-top: 0; }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .option-btn {
+      background: white;
+      border: 1px solid var(--line);
+      text-align: left;
+      color: var(--text);
+    }
+
+    .option-btn:hover { background: #eef4ff; }
+
+    .primary-btn {
+      background: var(--blue);
+      color: white;
+    }
+
+    .secondary-btn {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      margin: 8px 0 10px;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      background: white;
+    }
+
+    .result {
+      margin-top: 8px;
+      min-height: 24px;
+      font-weight: 700;
+    }
+
+    .good { color: var(--green); }
+    .bad { color: var(--red); }
+
+    .explain {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid var(--line);
+      cursor: grab;
+      user-select: none;
+    }
+
+    .dropzone {
+      min-height: 54px;
+      border: 2px dashed #bfd2ff;
+      background: white;
+      border-radius: 14px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .dropzone strong { display: block; margin-bottom: 6px; }
+
+    .drag-note {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 6px;
+    }
+
+    .sticky-stats {
+      position: sticky;
+      bottom: 12px;
+      z-index: 20;
+      margin-top: 28px;
+      background: rgba(17,24,39,.92);
+      color: white;
+      border-radius: 18px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 180px 1fr 180px;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .progress-track {
+      height: 12px;
+      background: rgba(255,255,255,.16);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      transition: width .25s ease;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 0 10px;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .grid, .dashboard, .sticky-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="logo">Морфология PRO 4.0</div>
+        <nav>
+          <a href="#home">Главная</a>
+          <a href="#noun">Существительное</a>
+          <a href="#adjective">Прилагательное</a>
+          <a href="#verb">Глагол</a>
+          <a href="#pronoun">Местоимение</a>
+        </nav>
+      </div>
+
+      <div class="hero" id="home">
+        <div>
+          <h1>Учебное приложение по морфологии: теория, инфографика и тренажёр</h1>
+          <p>
+            Здесь каждая часть речи изучается по нормальной схеме: сначала понятное объяснение,
+            затем визуальные опоры и только после этого — практика. Иначе тренажёр превращается в лотерею,
+            а нам нужен не азарт, а знание.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h3>Что внутри</h3>
+          <div class="hero-grid">
+            <div class="hero-mini">📘 Подробная теория</div>
+            <div class="hero-mini">🧭 Памятки и схемы</div>
+            <div class="hero-mini">🎯 Сложные задания</div>
+            <div class="hero-mini">📈 Прогресс и очки</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="dashboard">
+        <div class="metric"><div class="label">Очки</div><div class="value" id="scoreValue">0</div></div>
+        <div class="metric"><div class="label">Выполнено заданий</div><div class="value" id="doneValue">0</div></div>
+        <div class="metric"><div class="label">Уровень</div><div class="value" id="levelValue">1</div></div>
+        <div class="metric"><div class="label">Точность</div><div class="value" id="accuracyValue">0%</div></div>
+      </section>
+
+      <section class="section" id="noun">
+        <div class="section-head">
+          <h2>Имя существительное</h2>
+          <span class="tag">Кто? Что?</span>
+        </div>
+        <div class="grid">
+          <div>
+            <article class="card">
+              <h3>Теория</h3>
+              <div class="theory-block">
+                <h4>1. Что считается предметом</h4>
+                <p>Существительное называет не только реальную вещь, но вообще всё, что можно назвать словом.</p>
+                <ul>
+                  <li><strong>люди:</strong> учитель, друг</li>
+                  <li><strong>животные:</strong> кот, орёл</li>
+                  <li><strong>предметы:</strong> стол, телефон</li>
+                  <li><strong>явления:</strong> дождь, ветер</li>
+                  <li><strong>качества как понятия:</strong> доброта, смелость</li>
+                  <li><strong>действия как понятия:</strong> бег, чтение</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>2. Грамматические признаки</h4>
+                <p><strong>Постоянные:</strong> род, одушевлённость/неодушевлённость, собственное/нарицательное.</p>
+                <p><strong>Непостоянные:</strong> число и падеж.</p>
+                <div class="mini-table">
+                  <div class="mini-row"><strong>Род</strong><span>дом, ученик / книга, ночь / окно, море</span></div>
+                  <div class="mini-row"><strong>Число</strong><span>книга → книги</span></div>
+                  <div class="mini-row"><strong>Падеж</strong><span>книга, книги, книге, книгу, книгой, о книге</span></div>
+                </div>
+              </div>
+              <div class="theory-block">
+                <h4>3. Синтаксическая роль</h4>
+                <p>Чаще всего существительное бывает <strong>подлежащим</strong> и <strong>дополнением</strong>, но может быть и другими членами предложения.</p>
+              </div>
+              <div class="theory-block">
+                <h4>4. Как отличить</h4>
+                <ul>
+                  <li>можно задать вопрос <strong>кто?</strong> или <strong>что?</strong></li>
+                  <li>можно поставить во множественное число</li>
+                  <li>можно изменить по падежам</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>5. Частые ошибки</h4>
+                <ul>
+                  <li><strong>красивый</strong> — признак, это не существительное</li>
+                  <li><strong>бежать</strong> — действие, это глагол</li>
+                  <li><strong>бег</strong> — уже существительное, потому что действие названо как предмет мысли</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="card infographic">
+              <h3>Инфографика: как распознать существительное</h3>
+              <div class="info-grid">
+                <div class="info-item"><div class="emoji">📦</div><strong>Называет предмет</strong><span>в широком смысле</span></div>
+                <div class="info-item"><div class="emoji">❓</div><strong>Кто? Что?</strong><span>главные вопросы</span></div>
+                <div class="info-item"><div class="emoji">🔁</div><strong>Меняется</strong><span>по числам и падежам</span></div>
+                <div class="info-item"><div class="emoji">🏷️</div><strong>Имеет род</strong><span>м., ж., ср.</span></div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="card trainer-panel">
+            <h3>Тренировка</h3>
+            <div class="task" data-points="2">
+              <p><strong>1. Выбери все существительные</strong></p>
+              <div class="options multi-select" data-answer="ветер,смелость,чтение">
+                <button class="option-btn">ветер</button>
+                <button class="option-btn">бежать</button>
+                <button class="option-btn">смелость</button>
+                <button class="option-btn">синий</button>
+                <button class="option-btn">чтение</button>
+              </div>
+              <button class="primary-btn check-multi">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Нужно найти не только обычные предметы, но и качества или действия, если они названы как понятия.</div>
+            </div>
+
+            <div class="task" data-points="2">
+              <p><strong>2. Определи падеж слова «книгу»</strong></p>
+              <input type="text" class="free-input" data-answer="винительный" placeholder="Напиши падеж" />
+              <button class="primary-btn check-input">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Подсказка: «вижу что?» — книгу.</div>
+            </div>
+
+            <div class="task drag-task" data-points="2">
+              <p><strong>3. Перетащи слова в зону существительных</strong></p>
+              <div class="chips">
+                <span class="chip" draggable="true">дом</span>
+                <span class="chip" draggable="true">читать</span>
+                <span class="chip" draggable="true">бег</span>
+                <span class="chip" draggable="true">сильный</span>
+              </div>
+              <div class="dropzone" data-accept="дом,бег"><strong>Существительные</strong></div>
+              <button class="primary-btn check-drag">Проверить</button>
+              <div class="result"></div>
+              <div class="drag-note">Сюда должны попасть слова, которые отвечают на вопрос кто? или что?</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="adjective">
+        <div class="section-head">
+          <h2>Имя прилагательное</h2>
+          <span class="tag">Какой? Какая? Какое?</span>
+        </div>
+        <div class="grid">
+          <div>
+            <article class="card">
+              <h3>Теория</h3>
+              <div class="theory-block">
+                <h4>1. Что обозначает</h4>
+                <p>Прилагательное обозначает <strong>признак предмета</strong>: цвет, размер, качество, характер, материал, отношение к чему-либо.</p>
+                <ul>
+                  <li>цвет: зелёный, синий</li>
+                  <li>размер: большой, маленький</li>
+                  <li>качество: добрый, умный</li>
+                  <li>отношение: школьный, зимний</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>2. Грамматические признаки</h4>
+                <p>Прилагательное изменяется по <strong>родам, числам и падежам</strong> и согласуется с существительным.</p>
+                <p>Например: <em>синий шар</em>, <em>синяя ручка</em>, <em>синее небо</em>, <em>синие тетради</em>.</p>
+              </div>
+              <div class="theory-block">
+                <h4>3. Синтаксическая роль</h4>
+                <p>Обычно бывает <strong>определением</strong>: <em>красивый дом</em>. Иногда входит в состав сказуемого: <em>дом красив</em>.</p>
+              </div>
+              <div class="theory-block">
+                <h4>4. Как отличить</h4>
+                <ul>
+                  <li>отвечает на вопросы: какой? какая? какое? какие?</li>
+                  <li>обозначает не предмет, а его признак</li>
+                  <li>часто стоит рядом с существительным и зависит от него</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>5. Частые ошибки</h4>
+                <ul>
+                  <li><strong>доброта</strong> — не прилагательное, а существительное</li>
+                  <li><strong>умно</strong> — это наречие, а не прилагательное</li>
+                  <li>нужно следить за согласованием: <em>синее небо</em>, а не <em>синяя небо</em></li>
+                </ul>
+              </div>
+            </article>
+            <article class="card infographic">
+              <h3>Инфографика: признаки прилагательного</h3>
+              <div class="info-grid">
+                <div class="info-item"><div class="emoji">🎨</div><strong>Признак предмета</strong><span>цвет, размер, качество</span></div>
+                <div class="info-item"><div class="emoji">🤝</div><strong>Согласуется</strong><span>с существительным</span></div>
+                <div class="info-item"><div class="emoji">❓</div><strong>Какой?</strong><span>главный вопрос</span></div>
+                <div class="info-item"><div class="emoji">🧩</div><strong>Делает речь точнее</strong><span>и образнее</span></div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="card trainer-panel">
+            <h3>Тренировка</h3>
+            <div class="task" data-points="2">
+              <p><strong>1. Выбери все прилагательные</strong></p>
+              <div class="options multi-select" data-answer="красивый,зимний,маленький">
+                <button class="option-btn">красивый</button>
+                <button class="option-btn">дом</button>
+                <button class="option-btn">зимний</button>
+                <button class="option-btn">бежать</button>
+                <button class="option-btn">маленький</button>
+              </div>
+              <button class="primary-btn check-multi">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Смотри, что обозначает признак предмета, а не сам предмет и не действие.</div>
+            </div>
+
+            <div class="task" data-points="2">
+              <p><strong>2. Исправь ошибку в предложении</strong></p>
+              <p><em>Синяя небо светлое.</em></p>
+              <input type="text" class="free-input" data-answer="синее" placeholder="Какое слово нужно написать правильно?" />
+              <button class="primary-btn check-input">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Прилагательное должно согласоваться со словом «небо» в роде.</div>
+            </div>
+
+            <div class="task" data-points="2">
+              <p><strong>3. Найди слово, которое не является прилагательным</strong></p>
+              <div class="options single-select" data-answer="доброта">
+                <button class="option-btn">смелый</button>
+                <button class="option-btn">доброта</button>
+                <button class="option-btn">высокий</button>
+              </div>
+              <div class="result"></div>
+              <div class="explain">Иногда слово похоже по смыслу, но относится к другой части речи.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="verb">
+        <div class="section-head">
+          <h2>Глагол</h2>
+          <span class="tag">Что делать? Что сделать?</span>
+        </div>
+        <div class="grid">
+          <div>
+            <article class="card">
+              <h3>Теория</h3>
+              <div class="theory-block">
+                <h4>1. Что обозначает</h4>
+                <p>Глагол обозначает <strong>действие</strong>, <strong>состояние</strong> или <strong>процесс</strong>.</p>
+                <ul>
+                  <li>действие: писать, прыгать</li>
+                  <li>состояние: спать, болеть</li>
+                  <li>процесс: расти, стареть</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>2. Грамматические признаки</h4>
+                <p><strong>Постоянный признак:</strong> вид — совершенный и несовершенный.</p>
+                <p><strong>Непостоянные признаки:</strong> время, число, лицо, а в прошедшем времени — род.</p>
+                <div class="mini-table">
+                  <div class="mini-row"><strong>Вид</strong><span>писать / написать</span></div>
+                  <div class="mini-row"><strong>Время</strong><span>читаю, читал, буду читать</span></div>
+                  <div class="mini-row"><strong>Лицо</strong><span>я читаю, ты читаешь, они читают</span></div>
+                </div>
+              </div>
+              <div class="theory-block">
+                <h4>3. Синтаксическая роль</h4>
+                <p>Чаще всего глагол — это <strong>сказуемое</strong>, то есть главный носитель действия в предложении.</p>
+              </div>
+              <div class="theory-block">
+                <h4>4. Как отличить</h4>
+                <ul>
+                  <li>задай вопрос: что делать? что сделать?</li>
+                  <li>проверь, обозначает ли слово действие или состояние</li>
+                  <li>посмотри, можно ли определить время или вид</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>5. Частые ошибки</h4>
+                <ul>
+                  <li><strong>бег</strong> — не глагол, а существительное</li>
+                  <li><strong>красиво</strong> — не глагол, а наречие</li>
+                  <li>нельзя смешивать формы: <em>буду писать</em>, а не <em>буду писал</em></li>
+                </ul>
+              </div>
+            </article>
+            <article class="card infographic">
+              <h3>Инфографика: как узнать глагол</h3>
+              <div class="info-grid">
+                <div class="info-item"><div class="emoji">🏃</div><strong>Действие</strong><span>или состояние</span></div>
+                <div class="info-item"><div class="emoji">⏰</div><strong>Имеет время</strong><span>настоящее, прошедшее, будущее</span></div>
+                <div class="info-item"><div class="emoji">🧭</div><strong>Имеет вид</strong><span>сов./несов.</span></div>
+                <div class="info-item"><div class="emoji">📌</div><strong>Часто сказуемое</strong><span>в предложении</span></div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="card trainer-panel">
+            <h3>Тренировка</h3>
+            <div class="task" data-points="2">
+              <p><strong>1. Выбери все глаголы</strong></p>
+              <div class="options multi-select" data-answer="читать,уснуть,расти">
+                <button class="option-btn">читать</button>
+                <button class="option-btn">уснуть</button>
+                <button class="option-btn">смелость</button>
+                <button class="option-btn">расти</button>
+                <button class="option-btn">зелёный</button>
+              </div>
+              <button class="primary-btn check-multi">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Сюда относятся слова, которые называют действие, процесс или состояние.</div>
+            </div>
+
+            <div class="task" data-points="2">
+              <p><strong>2. Определи вид глагола «прочитать»</strong></p>
+              <input type="text" class="free-input" data-answer="совершенный" placeholder="Напиши вид глагола" />
+              <button class="primary-btn check-input">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Совершенный вид указывает на завершённость действия.</div>
+            </div>
+
+            <div class="task" data-points="2">
+              <p><strong>3. Исправь ошибку</strong></p>
+              <p><em>Я буду писал письмо.</em></p>
+              <input type="text" class="free-input" data-answer="буду писать" placeholder="Напиши правильную форму" />
+              <button class="primary-btn check-input">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Составное будущее время образуется от «быть» + инфинитив.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="pronoun">
+        <div class="section-head">
+          <h2>Местоимение</h2>
+          <span class="tag">Указывает, но не называет</span>
+        </div>
+        <div class="grid">
+          <div>
+            <article class="card">
+              <h3>Теория</h3>
+              <div class="theory-block">
+                <h4>1. Что обозначает</h4>
+                <p>Местоимение не называет предмет, признак или количество прямо, а только <strong>указывает</strong> на них.</p>
+                <ul>
+                  <li>на предмет: я, ты, он, она, мы</li>
+                  <li>на признак: такой, этот</li>
+                  <li>на количество: столько, сколько</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>2. Зачем нужно</h4>
+                <p>Местоимения помогают избегать повторов и делают речь более связной.</p>
+                <p>Например: <em>Айжан пришла. Она села читать.</em></p>
+              </div>
+              <div class="theory-block">
+                <h4>3. Разряды</h4>
+                <ul>
+                  <li><strong>личные:</strong> я, ты, он</li>
+                  <li><strong>указательные:</strong> этот, тот</li>
+                  <li><strong>вопросительные:</strong> кто? что? какой?</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>4. Как отличить</h4>
+                <ul>
+                  <li>слово не называет прямо, а заменяет или указывает</li>
+                  <li>часто помогает избежать повторения существительного</li>
+                  <li>может отвечать на вопросы кто? что? какой? сколько?</li>
+                </ul>
+              </div>
+              <div class="theory-block">
+                <h4>5. Частые ошибки</h4>
+                <ul>
+                  <li><strong>Айжан</strong> — это существительное, не местоимение</li>
+                  <li><strong>этот</strong> — местоимение, хотя иногда его путают с прилагательным</li>
+                  <li>важно понимать, что местоимение зависит от контекста</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card infographic">
+              <h3>Инфографика: роль местоимения</h3>
+              <div class="info-grid">
+                <div class="info-item"><div class="emoji">👤</div><strong>Заменяет</strong><span>существительное</span></div>
+                <div class="info-item"><div class="emoji">📍</div><strong>Указывает</strong><span>на предмет или признак</span></div>
+                <div class="info-item"><div class="emoji">🔄</div><strong>Убирает повторы</strong><span>в тексте</span></div>
+                <div class="info-item"><div class="emoji">🧠</div><strong>Работает по контексту</strong><span>смысл зависит от предложения</span></div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="card trainer-panel">
+            <h3>Тренировка</h3>
+            <div class="task" data-points="2">
+              <p><strong>1. Замени повтор местоимением</strong></p>
+              <p><em>Айжан пришла домой. Айжан села за уроки.</em></p>
+              <input type="text" class="free-input" data-answer="она" placeholder="Напиши местоимение" />
+              <button class="primary-btn check-input">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Нужно выбрать слово, которое заменяет имя девочки.</div>
+            </div>
+
+            <div class="task" data-points="2">
+              <p><strong>2. Определи разряд местоимения «этот»</strong></p>
+              <input type="text" class="free-input" data-answer="указательное" placeholder="Напиши разряд" />
+              <button class="primary-btn check-input">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Оно указывает на предмет: этот дом, этот ученик.</div>
+            </div>
+
+            <div class="task" data-points="2">
+              <p><strong>3. Выбери только местоимения</strong></p>
+              <div class="options multi-select" data-answer="мы,этот,сколько">
+                <button class="option-btn">мы</button>
+                <button class="option-btn">дом</button>
+                <button class="option-btn">этот</button>
+                <button class="option-btn">сколько</button>
+                <button class="option-btn">умный</button>
+              </div>
+              <button class="primary-btn check-multi">Проверить</button>
+              <div class="result"></div>
+              <div class="explain">Здесь есть личное, указательное и вопросительное местоимения.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="sticky-stats">
+        <div><strong>Прогресс</strong><br><span id="stickyText">0 / 24 очков</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div><strong>Ошибок:</strong> <span id="mistakeValue">0</span></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Морфология PRO 4.0 — сначала смысл, потом кнопки. Так русский язык хотя бы перестаёт мстить внезапно.
+  </footer>
+
+  <script>
+    let score = 0;
+    let done = 0;
+    let attempts = 0;
+    let mistakes = 0;
+    const maxScore = 24;
+
+    function updateStats() {
+      const accuracy = attempts ? Math.round((score / (attempts * 2)) * 100) : 0;
+      const level = Math.max(1, Math.floor(score / 6) + 1);
+      document.getElementById('scoreValue').textContent = score;
+      document.getElementById('doneValue').textContent = done;
+      document.getElementById('levelValue').textContent = level;
+      document.getElementById('accuracyValue').textContent = accuracy + '%';
+      document.getElementById('stickyText').textContent = `${score} / ${maxScore} очков`;
+      document.getElementById('mistakeValue').textContent = mistakes;
+      document.getElementById('progressFill').style.width = `${(score / maxScore) * 100}%`;
+    }
+
+    function markTaskSolved(task) {
+      if (!task.dataset.done) {
+        task.dataset.done = 'true';
+        score += Number(task.dataset.points || 1);
+        done += 1;
+      }
+      updateStats();
+    }
+
+    document.querySelectorAll('.multi-select .option-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('selected');
+        btn.style.background = btn.classList.contains('selected') ? '#dbeafe' : 'white';
+        btn.style.borderColor = btn.classList.contains('selected') ? '#60a5fa' : '#d8e3ff';
+      });
+    });
+
+    document.querySelectorAll('.check-multi').forEach(button => {
+      button.addEventListener('click', () => {
+        const task = button.closest('.task');
+        const wrap = task.querySelector('.multi-select');
+        const result = task.querySelector('.result');
+        const selected = [...wrap.querySelectorAll('.selected')].map(el => el.textContent.trim()).sort();
+        const answer = wrap.dataset.answer.split(',').map(s => s.trim()).sort();
+        attempts += 1;
+        const ok = JSON.stringify(selected) === JSON.stringify(answer);
+        if (ok) {
+          result.textContent = 'Верно. Здесь действительно выбраны все нужные слова.';
+          result.className = 'result good';
+          markTaskSolved(task);
+        } else {
+          mistakes += 1;
+          result.textContent = 'Не совсем. Проверь смысл слов ещё раз.';
+          result.className = 'result bad';
+          updateStats();
+        }
+      });
+    });
+
+    document.querySelectorAll('.single-select').forEach(taskWrap => {
+      taskWrap.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (taskWrap.dataset.locked) return;
+          const task = taskWrap.closest('.task');
+          const result = task.querySelector('.result');
+          const answer = taskWrap.dataset.answer.trim().toLowerCase();
+          const value = btn.textContent.trim().toLowerCase();
+          attempts += 1;
+          taskWrap.dataset.locked = 'true';
+          if (value === answer) {
+            result.textContent = 'Верно. Это слово относится к другой части речи.';
+            result.className = 'result good';
+            markTaskSolved(task);
+          } else {
+            mistakes += 1;
+            result.textContent = 'Неверно. Подумай, на какой вопрос отвечает слово.';
+            result.className = 'result bad';
+            updateStats();
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll('.check-input').forEach(button => {
+      button.addEventListener('click', () => {
+        const task = button.closest('.task');
+        const input = task.querySelector('.free-input');
+        const result = task.querySelector('.result');
+        const answer = input.dataset.answer.trim().toLowerCase();
+        const value = input.value.trim().toLowerCase();
+        attempts += 1;
+        const ok = value.includes(answer);
+        if (ok) {
+          result.textContent = 'Верно.';
+          result.className = 'result good';
+          markTaskSolved(task);
+        } else {
+          mistakes += 1;
+          result.textContent = 'Неверно. Посмотри на правило и попробуй ещё раз.';
+          result.className = 'result bad';
+          updateStats();
+        }
+      });
+    });
+
+    let draggedChip = null;
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('dragstart', () => {
+        draggedChip = chip;
+      });
+    });
+
+    document.querySelectorAll('.dropzone').forEach(zone => {
+      zone.addEventListener('dragover', e => e.preventDefault());
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        if (draggedChip) zone.appendChild(draggedChip);
+      });
+    });
+
+    document.querySelectorAll('.check-drag').forEach(button => {
+      button.addEventListener('click', () => {
+        const task = button.closest('.task');
+        const zone = task.querySelector('.dropzone');
+        const result = task.querySelector('.result');
+        const answer = zone.dataset.accept.split(',').map(s => s.trim()).sort();
+        const dropped = [...zone.querySelectorAll('.chip')].map(el => el.textContent.trim()).sort();
+        attempts += 1;
+        const ok = JSON.stringify(answer) === JSON.stringify(dropped);
+        if (ok) {
+          result.textContent = 'Верно. В зоне оказались только существительные.';
+          result.className = 'result good';
+          markTaskSolved(task);
+        } else {
+          mistakes += 1;
+          result.textContent = 'Пока не совпало. Проверь, какие слова отвечают на вопрос что?';
+          result.className = 'result bad';
+          updateStats();
+        }
+      });
+    });
+
+    updateStats();
+  </script>
+</body>
+</html>
